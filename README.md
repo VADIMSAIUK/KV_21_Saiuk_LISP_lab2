@@ -44,7 +44,6 @@ CL-USER> (defun reverse-and-nest-head (lst)
              (if (cdr lst)
                  (cons (reverse-and-nest-head (cdr lst)) (list (car lst)))
                  (list (car lst)))))
-REVERSE-AND-NEST-HEAD
 ```
 ### Тестові набори
 ```lisp
@@ -53,13 +52,11 @@ CL-USER> (defun check-reverse-and-nest-head (name input expected)
            (format t "~:[FAILED~;passed~]... ~a~%" 
                    (equal (reverse-and-nest-head input) expected) 
                    name))
-CHECK-REVERSE-AND-NEST-HEAD
 CL-USER> (defun test-reverse ()
            (check-reverse-and-nest-head "test-1" '(a b c) '(((c) b) a))
            (check-reverse-and-nest-head "test-2" '((a) (b) (c)) '((((c)) (b)) (a)))
            (check-reverse-and-nest-head "test-3" '(a b c ()) '((((nil) c) b) a))
            (check-reverse-and-nest-head "test-4" '(() a b c) '((((c) b) a) nil)))
-TEST-REVERSE
 ```
 ### Тестування
 ```lisp
@@ -77,12 +74,10 @@ CL-USER> (defun duplicate-inner (e n)
            (if (> n 0)
                (cons e (duplicate-inner e (- n 1)))
                nil))
-DUPLICATE-INNER
 CL-USER> (defun duplicate-elements (lst n)
            (when lst
              (append (duplicate-inner (car lst) n)
                     (duplicate-elements (cdr lst) n))))
-DUPLICATE-ELEMENTS
 ```
 
 ### Тестові набори
@@ -92,13 +87,11 @@ CL-USER> (defun check-duplicate (name input-lst input-n expected)
            (format t "~:[FAILED~;passed~]... ~a~%" 
                    (equal (duplicate-elements input-lst input-n) expected) 
                    name))
-CHECK-DUPLICATE
 CL-USER> (defun test-duplicate-elements ()
            (check-duplicate "test-1" '(a b c) 3 '(a a a b b b c c c))
            (check-duplicate "test-2" '((a) b c) 2 '((a) (a) b b c c))
            (check-duplicate "test-3" '(() a) 3 '(nil nil nil a a a))
            (check-duplicate "test-4" '(a b c) 0 nil))
-TEST-DUPLICATE-ELEMENTS
 ```
 
 ### Тестування
